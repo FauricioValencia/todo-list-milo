@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "antd/dist/antd.css";
 import { Icon } from "antd";
 import classes from "./taskStyles.module.scss";
@@ -15,17 +16,19 @@ export function Task({
       <div className={classes.containerTask}>
         <Icon
           type="check-circle"
-          className={state ? classes.iconCheckTrue:classes.iconCheckFalse}
+          className={state ? classes.iconCheckTrue : classes.iconCheckFalse}
           onClick={onHandleCheck}
           state={state}
         />
         <p>{title}</p>
       </div>
-      {!state &&<Icon
-        type="edit"
-        className={classes.iconEdit}
-        onClick={onHandleUpdateTask}
-      />}
+      {!state && (
+        <Icon
+          type="edit"
+          className={classes.iconEdit}
+          onClick={onHandleUpdateTask}
+        />
+      )}
       <Icon
         type="delete"
         className={classes.iconDelete}
@@ -34,3 +37,11 @@ export function Task({
     </div>
   );
 }
+
+Task.propTypes = {
+  state: PropTypes.bool,
+  title: PropTypes.string,
+  handleDeleteTask: PropTypes.func,
+  onHandleCheck: PropTypes.func,
+  onHandleUpdateTask: PropTypes.func
+};
