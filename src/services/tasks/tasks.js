@@ -4,17 +4,22 @@ class TasksService {
     this.tasksProvider = new Firebase();
   }
   doCreateTask = task => {
-    return this.tasksProvider.doCreateTask(task);
+    try {
+      console.log("el task que recibe desde task service", task);
+      return this.tasksProvider.doCreateTask(task);
+    } catch (error) {
+      console.error("error al crear la tarea en service/task: ", error);
+    }
   };
   observerTasks = func => {
     return this.tasksProvider.observerTasks(func);
   };
-  doUpdateTask = (uid, newData) => {
-    return this.tasksProvider.doUpdateTask(uid, newData);
+  doUpdateTask = task => {
+    return this.tasksProvider.doUpdateTask(task);
   };
-  doDeleteTask = uid => {
-    return this.tasksProvider.doDeleteTask(uid);
+  doDeleteTask = task => {
+    return this.tasksProvider.doDeleteTask(task.uid);
   };
 }
 
-export default TasksService;
+export default new TasksService();

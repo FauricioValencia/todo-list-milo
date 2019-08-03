@@ -1,11 +1,10 @@
-import todoActionType from "./actions.type";
+import todoActionType from "./actions.types";
 
 const initialState = {
   tasks: []
 };
 
 function createTask(state, task) {
-  console.log(state, task);
   const tasks = [...state.tasks];
   tasks.push(task);
   return {
@@ -14,7 +13,7 @@ function createTask(state, task) {
   };
 }
 
-function getAllTasks(state, tasks) {
+function observerTasks(state, tasks) {
   return {
     ...state,
     tasks
@@ -61,7 +60,7 @@ export default function tasksReducer(state = initialState, action) {
     case todoActionType.CREATE_TASK:
       return createTask(state, action.task);
     case todoActionType.GET_ALL_TASKS:
-      return getAllTasks(state, action.tasks);
+      return observerTasks(state, action.tasks);
     case todoActionType.DELETE_ALL_TASKS:
       return deleteAllTasks(state, action.tasks);
     case todoActionType.DELETE_TASK:

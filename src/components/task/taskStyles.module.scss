@@ -1,0 +1,48 @@
+@import "../../assets/styles/colors.scss";
+@import "../../assets/styles/sizes.scss";
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  .containerTask {
+    width: 85%;
+    flex-direction: row;
+    display: flex;
+    margin-left: 1rem;
+  }
+  .iconCheckTrue {
+    font-size: $sizeIcons;
+    margin-right: 2rem;
+    color: green;
+    &:hover {
+      color: green;
+      cursor: pointer;
+    }
+   
+  }
+  .iconCheckFalse {
+    font-size: $sizeIcons;
+    margin-right: 2rem;
+    &:hover {
+      color: green;
+      cursor: pointer;
+    }
+   
+  }
+  .iconEdit {
+    font-size: $sizeIcons;
+    &:hover {
+      color: yellow;
+      cursor: pointer;
+    }
+  }
+  .iconDelete {
+    margin-left: 2rem;
+    font-size: $sizeIcons;
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
+  }
+}

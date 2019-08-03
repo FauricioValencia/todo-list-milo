@@ -18,21 +18,25 @@ class Firebase {
     } else {
       app = firebase.app();
     }
-
+    this.firestore = app.firestore();
     this.tasksCollection = this.firestore.collection("tasks");
   }
 
   doCreateTask = task => {
-    return this.tasksCollection.doc(task.uid).set({
-      ...task
-    });
+    try {
+      return this.tasksCollection.doc(task.uid).set({
+        ...task
+      });
+    } catch (error) {
+      console.error("error en docreateTask: ", error);
+    }
   };
-  doUpdateTask = (id, newData) => {
-    return this.tasksCollection.doc(id).set({ ...newData }, { merge: true });
+  doUpdateTask = data => {
+    return this.tasksCollection.doc(data.uid).set({ ...data }, { merge: true });
   };
 
   observerTasks = func => {
-    return this.tasksCollection.doc().onSnapshot(func);
+    return this.tasksCollection.onSnapshot(func);
   };
   doDeleteTask = uid => {
     return this.tasksCollection.doc(uid).delete();

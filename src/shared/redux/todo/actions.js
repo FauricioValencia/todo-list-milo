@@ -5,8 +5,8 @@ export const createTask = (task = {}) => ({
   task
 });
 
-export const getAllTask = (tasks = []) => ({
-  type: todoActionType.GET_ALL_TASKS,
+export const observerTasks = (tasks = []) => ({
+  type: todoActionType.OBSERVER_TASKS,
   tasks
 });
 
