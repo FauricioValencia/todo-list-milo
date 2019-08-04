@@ -24,7 +24,7 @@ This development is focus test selection for developer front-end
 
 The components have unit test:
 
-- `App` path: `src/Containers/App/mock/App.test.js`.
+- `App` path: `src/containers/App/App.test.js`.
 - Function create task path: `src/shared/redux/todo/todo.test.js`.
 
 For execute unit test:
