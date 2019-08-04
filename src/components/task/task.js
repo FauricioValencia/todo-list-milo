@@ -18,7 +18,6 @@ export function Task({
           type="check-circle"
           className={state ? classes.iconCheckTrue : classes.iconCheckFalse}
           onClick={onHandleCheck}
-          state={state}
         />
         <p>{title}</p>
       </div>

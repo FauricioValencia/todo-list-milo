@@ -5,7 +5,6 @@ class TasksService {
   }
   doCreateTask = task => {
     try {
-      console.log("el task que recibe desde task service", task);
       return this.tasksProvider.doCreateTask(task);
     } catch (error) {
       console.error("error al crear la tarea en service/task: ", error);

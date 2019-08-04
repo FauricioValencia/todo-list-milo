@@ -14,26 +14,23 @@
   .iconCheckTrue {
     font-size: $sizeIcons;
     margin-right: 2rem;
-    color: green;
+    color: $colorCheck;
     &:hover {
-      color: green;
       cursor: pointer;
     }
-   
   }
   .iconCheckFalse {
     font-size: $sizeIcons;
     margin-right: 2rem;
     &:hover {
-      color: green;
+      color: $colorCheck;
       cursor: pointer;
     }
-   
   }
   .iconEdit {
     font-size: $sizeIcons;
     &:hover {
-      color: yellow;
+      color: $colorUpdate;
       cursor: pointer;
     }
   }
@@ -41,7 +38,7 @@
     margin-left: 2rem;
     font-size: $sizeIcons;
     &:hover {
-      color: red;
+      color: $colorDelete;
       cursor: pointer;
     }
   }

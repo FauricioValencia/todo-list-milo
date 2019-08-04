@@ -4,9 +4,7 @@ const initialState = {
   tasks: []
 };
 
-function createTask(state, task) {
-  const tasks = [...state.tasks];
-  tasks.push(task);
+function createTask(state, tasks) {
   return {
     ...state,
     tasks
@@ -30,21 +28,28 @@ function deleteAllTasks(state, tasks) {
 function deleteTask(state, task) {
   return {
     ...state,
-    tasks:task
+    tasks: task
   };
 }
 
 function doneTask(state, task) {
   return {
     ...state,
-    tasks:task,
+    tasks: task
   };
 }
 
 function updateTask(state, task) {
   return {
-    state,
-    tasks:task
+    ...state,
+    tasks: task
+  };
+}
+
+function saveDataFromRedux(state, tasks) {
+  return {
+    ...state,
+    tasks
   };
 }
 
@@ -62,6 +67,8 @@ export default function tasksReducer(state = initialState, action) {
       return doneTask(state, action.task);
     case todoActionType.UPDATE_TASK:
       return updateTask(state, action.task);
+    case todoActionType.SAVE_DATA_FROM_REDUX:
+      return saveDataFromRedux(state, action.tasks);
     default:
       return state;
   }

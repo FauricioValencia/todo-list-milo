@@ -10,11 +10,6 @@ export const observerTasks = (tasks = []) => ({
   tasks
 });
 
-export const deleteAllTask = (tasks = []) => ({
-  type: todoActionType.DELETE_ALL_TASKS,
-  tasks
-});
-
 export const deleteTask = (task = {}) => ({
   type: todoActionType.DELETE_TASK,
   task
@@ -29,3 +24,10 @@ export const updateTask = (task = {}) => ({
   type: todoActionType.UPDATE_TASK,
   task
 });
+
+export const saveDataFromFirebase = (tasks = []) => {
+  return {
+    type: todoActionType.SAVE_DATA_FROM_REDUX,
+    tasks
+  };
+};

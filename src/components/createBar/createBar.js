@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "antd/dist/antd.css";
 import { Input, Button, Icon } from "antd";
 import classes from "./createBarStyles.module.scss";
-import { useInputValue } from "../../hooks/useInputValue";
 
 export function CreateBar({
   isAddTask,
@@ -12,7 +11,6 @@ export function CreateBar({
   setTitleTask,
   onHandleCancelUpdate
 }) {
-  const task = useInputValue(Boolean(titleTask) ? titleTask : "");
   return (
     <div className={classes.root}>
       <Input

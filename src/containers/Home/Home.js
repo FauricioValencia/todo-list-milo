@@ -1,40 +1,37 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import uid from "uid";
-import TasksService from "../../services/tasks/tasks";
 import { tasksActions } from "../../shared/redux/todo";
 import { CreateBar } from "../../components/createBar/createBar";
 import { Task } from "../../components/task/task";
 import { modal } from "../../util/modal";
+import moment from "moment";
 
 function Home() {
   const dispatch = useDispatch();
-  const [snapTasks, setSnapTasks] = useState([]);
   const [isAddTask, setIsAddTask] = useState(true);
   const [taskSelect, setTaskSelect] = useState({});
-  // const tasks = useSelector(({ todo }) => todo.tasks);
-  // console.log("desde redux tasks: ", tasks);
-
-  useEffect(() => {
-    TasksService.observerTasks(snap => {
-      const allTasks = snap.docs.map(element => element.data());
-      setSnapTasks(allTasks);
-    });
-  }, []);
+  const tasks = useSelector(({ todo }) => todo.tasks);
 
   const ListTask = () => {
-    return snapTasks.map(
-      (element, id) =>
-        element.state === false && (
-          <Task
-            key={id}
-            {...element}
-            onHandleCheck={() => onHandleUpdate(element, 1)}
-            handleDeleteTask={() => modal(() => handleDeleteTask(element))}
-            onHandleUpdateTask={() => handleButtonAddUpdateTask(element)}
-          />
-        )
-    );
+    return Array.isArray(tasks) && tasks.length
+      ? tasks
+          .sort((a, b) => a.time - b.time)
+          .map(
+            (element, id) =>
+              element.state === false && (
+                <Task
+                  key={id}
+                  {...element}
+                  onHandleCheck={() => onHandleUpdate(element, 1)}
+                  handleDeleteTask={() =>
+                    modal(() => handleDeleteTask(element))
+                  }
+                  onHandleUpdateTask={() => handleButtonAddUpdateTask(element)}
+                />
+              )
+          )
+      : [];
   };
 
   const handleTaskFormSubmit = () => {
@@ -42,7 +39,8 @@ function Home() {
       const body = {
         title: taskSelect.title,
         state: false,
-        uid: uid()
+        uid: uid(),
+        time: moment().milliseconds()
       };
       dispatch(tasksActions.createTask(body));
     } else {
@@ -77,7 +75,7 @@ function Home() {
           setTaskSelect({});
         }}
       />
-      <div style={{ overflow: "scroll" }}>{ListTask()}</div>
+      <div style={{ overflow: "scroll", height: 500 }}>{ListTask()}</div>
     </Fragment>
   );
 }
