@@ -5,10 +5,6 @@ import "firebase/storage";
 import "firebase/functions";
 import { firebaseConfig } from "../../config/firebase/config";
 
-const getOptions = {
-  source: "server"
-};
-
 class Firebase {
   constructor() {
     let app;

@@ -4,7 +4,7 @@ import TasksService from "../../../services/tasks/tasks";
 
 function* createTaskSaga(action) {
   try {
-    yield call(TasksService.doCreateTask, action.task);
+    yield call(TasksService.doCreateTask, action.payload);
   } catch (error) {
     console.error("error to try create task", error);
   }
@@ -12,7 +12,7 @@ function* createTaskSaga(action) {
 
 function* updateTaskSaga(action) {
   try {
-    yield call(TasksService.doUpdateTask, action.task);
+    yield call(TasksService.doUpdateTask, action.payload);
   } catch (error) {
     console.error("error to try create task", error);
   }
@@ -20,7 +20,7 @@ function* updateTaskSaga(action) {
 
 function* deleteTaskSaga(action) {
   try {
-    yield call(TasksService.doDeleteTask, action.task);
+    yield call(TasksService.doDeleteTask, action.payload);
   } catch (error) {
     console.error("cant delete task: ", error);
   }

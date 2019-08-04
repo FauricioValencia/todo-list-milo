@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Router } from "@reach/router";
 import { Provider } from "react-redux";
-import { tasksActions } from "../../shared/redux/todo";
+import { saveDataFromFirebase } from "../../shared/redux/todo/actions";
 import { Layout } from "antd";
 import TasksService from "../../services/tasks/tasks";
 import store from "../../shared/redux";
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     TasksService.observerTasks(snap => {
       const allTasks = snap.docs.map(element => element.data());
-      store.dispatch(tasksActions.saveDataFromFirebase(allTasks));
+      store.dispatch(saveDataFromFirebase(allTasks));
     });
   }, []);
 
